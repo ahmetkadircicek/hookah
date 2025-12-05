@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct HookahApp: App {
     
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject var nav = NavigationManager()
     
     var body: some Scene {

@@ -64,7 +64,7 @@ extension NavigationManager {
             SplashView()
             
         case .home:
-         // HomeView()
+            HomeView()
         }
     }
 }
