@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SplashBackgroundView: View {
+struct BackgroundComponent: View {
     @State private var startAnimation = false
     let animationDuration = 2.0
     
@@ -40,5 +40,5 @@ struct SplashBackgroundView: View {
 }
 
 #Preview {
-    SplashBackgroundView()
+    BackgroundComponent()
 }

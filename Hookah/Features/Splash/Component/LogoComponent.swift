@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SplashLogoView: View {
+struct LogoComponent: View {
     let logoWidth = 200.0;
     let logoHeight = 200.0;
     
