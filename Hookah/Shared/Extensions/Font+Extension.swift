@@ -8,7 +8,6 @@
 import SwiftUI
 
 extension Font {
-    
     // MARK: - Headings
     
     static var headerLarge: Font {
@@ -36,10 +35,10 @@ extension Font {
     // MARK: - Captions & Metadata
     
     static var captionLarge: Font {
-        return Font.custom("Montserrat-Medium", size: 13, relativeTo: .footnote)
+        return Font.custom("Montserrat-Bold", size: 13, relativeTo: .footnote)
     }
     
     static var captionSmall: Font {
-        return Font.custom("Montserrat-Bold", size: 11, relativeTo: .caption)
+        return Font.custom("Montserrat-Medium", size: 13, relativeTo: .caption)
     }
 }

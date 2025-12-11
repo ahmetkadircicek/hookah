@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BackgroundComponent: View {
     @State private var startAnimation = false
-    let animationDuration = 2.0
+    let animationDuration: CGFloat = 2.0
     
     private let initialStartPoint = UnitPoint(x: -4, y: -3)
     private let finalStartPoint   = UnitPoint(x: 4, y: 3)

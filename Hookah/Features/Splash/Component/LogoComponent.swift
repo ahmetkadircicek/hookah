@@ -8,13 +8,18 @@
 import SwiftUI
 
 struct LogoComponent: View {
-    let logoWidth = 200.0;
-    let logoHeight = 200.0;
-    
+    let logoWidth: CGFloat = 200.0
+    let logoHeight: CGFloat = 200.0
+    let logoImage: String = "logo"
+
     var body: some View {
-        Image("logo")
+        Image(logoImage)
             .resizable()
             .scaledToFit()
             .frame(width: logoWidth, height: logoHeight)
     }
+}
+
+#Preview {
+    LogoComponent()
 }
