@@ -29,6 +29,7 @@ struct MixCard: View {
                         .font(.bodySmall)
                         .foregroundStyle(.aluminum)
                         .lineLimit(lineLimit)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
 
                 VStack(alignment: .leading, spacing: .paddingSmall) {
@@ -44,7 +45,7 @@ struct MixCard: View {
                 }
             }
 
-            Spacer(minLength: .paddingLarge)
+            Spacer(minLength: .paddingSmall)
 
             VStack(alignment: .trailing, spacing: .paddingLarge) {
                 if item.isFavorite {
@@ -73,7 +74,7 @@ struct MixCard: View {
     }
 }
 
-#Preview {
+#Preview (traits: .sizeThatFitsLayout){
     MixCard(
         item: .tropicalSunrise
     )
