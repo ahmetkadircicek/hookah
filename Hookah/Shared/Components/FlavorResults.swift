@@ -8,11 +8,26 @@
 import SwiftUI
 
 struct FlavorResults: View {
+    let results: Int
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack (alignment: .center, spacing: .paddingExtraLarge){
+            Text("Tüm Aromalar")
+                .font(.bodyLarge)
+                .fontWeight(.bold)
+                .foregroundStyle(.pureWhite)
+            
+            Spacer()
+            
+            Text("\(results) sonuç")
+                .font(.bodyLarge)
+                .foregroundStyle(.aluminum)
+            
+            
+        }
     }
 }
 
 #Preview {
-    FlavorResults()
+    FlavorResults(results: 12)
 }

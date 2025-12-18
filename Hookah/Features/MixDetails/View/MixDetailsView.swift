@@ -47,6 +47,8 @@ struct MixDetailsView: View {
                     .padding(.horizontal, .paddingMedium)
                     
                     // MARK: - Notes
+                    NotesCard()
+                        .padding(.horizontal, .paddingMedium)
                 } //: VSTACK
             } //: SCROLLVIEW
         } //: ZSTACK

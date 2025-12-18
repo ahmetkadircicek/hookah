@@ -18,12 +18,12 @@ struct MixDetailsCard: View {
             VStack(alignment: .leading, spacing: .paddingSmall) {
                 // MARK: - Mix name
                 Text(item.name)
-                    .font(.headerSmall)
+                    .font(.headerLarge)
                     .foregroundStyle(.pureWhite)
                 
                 // MARK: - Mix description
                 Text(item.description)
-                    .font(.bodySmall)
+                    .font(.bodyLarge)
                     .foregroundColor(.aluminum)
                 
                 //: MARK: - Category
