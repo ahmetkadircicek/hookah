@@ -43,8 +43,6 @@ struct MixListComponent: View {
     MixListComponent(
         title: "Öne Çıkanlar",
         actionTitle: "Tümünü Gör",
-        items: [
-            .tropicalSunrise
-        ]
+        items: MixModel.previewMixes
     )
 }
