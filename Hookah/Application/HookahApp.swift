@@ -11,7 +11,9 @@ import SwiftUI
 struct HookahApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
     @StateObject var nav = NavigationManager()
+    @StateObject var appDataStore = AppDataStore.shared
     
     var body: some Scene {
         WindowGroup {
@@ -22,6 +24,7 @@ struct HookahApp: App {
                     }
             }
             .environmentObject(nav)
+            .environmentObject(appDataStore)
         }
     }
 }

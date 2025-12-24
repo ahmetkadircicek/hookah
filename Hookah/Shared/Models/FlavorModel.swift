@@ -19,6 +19,20 @@ struct FlavorModel: Identifiable, Codable {
     let amount: Int
     let price: Int
     let imagePath: String
+    
+    enum CodingKeys: String, CodingKey {
+            case id
+            case name
+            case brand
+            case category
+            case description
+            case flavorNotes = "flavor_notes"
+            case tobaccoType = "tobacco_type"
+            case intensity
+            case amount
+            case price
+            case imagePath = "image_path"
+        }
 }
 
 extension FlavorModel {
