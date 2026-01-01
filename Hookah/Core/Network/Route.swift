@@ -10,4 +10,5 @@ import Foundation
 enum Route: Hashable {
     case splash
     case home
+    case mixDetails(mixID: String)
 }

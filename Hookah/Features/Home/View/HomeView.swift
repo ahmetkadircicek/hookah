@@ -9,6 +9,10 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var searchText: String = ""
+    
+    @EnvironmentObject var appDataStore: AppDataStore
+    @EnvironmentObject var nav: NavigationManager
+    
     let headerTitle: String = "PLACEHOLDER"
     let headerSubtitle: String = "Öne Çıkanlar ve Kategoriler"
     let categoryTitle: String = "Kategoriler"
@@ -47,9 +51,10 @@ struct HomeView: View {
                     MixListComponent(
                         title: mixListTitle,
                         actionTitle: mixListAction,
-                        items: [
-                            .tropicalSunrise,
-                        ]
+                        items: appDataStore.mixes,
+                        onSelect: { mix in
+                            nav.push(.mixDetails(mixID: mix.id))
+                        }
                     )
                     .padding(.horizontal, .paddingExtraLarge)
                 }
@@ -60,4 +65,6 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
+        .environmentObject(AppDataStore.shared)
+        .environmentObject(NavigationManager())
 }

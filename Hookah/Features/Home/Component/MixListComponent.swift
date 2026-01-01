@@ -11,6 +11,7 @@ struct MixListComponent: View {
     let title: String
     let actionTitle: String?
     let items: [MixModel]
+    let onSelect: (MixModel) -> Void
     let headerHeight: CGFloat = 30
 
     var body: some View {
@@ -30,9 +31,14 @@ struct MixListComponent: View {
             }
             .frame(height: headerHeight)
 
-            LazyVStack(spacing: .paddingMedium) {
-                ForEach(items) { item in
-                    MixCard(item: item)
+            ScrollView {
+                LazyVStack(spacing: .paddingMedium) {
+                    ForEach(items) { item in
+                        MixCard(item: item)
+                            .onTapGesture {
+                                onSelect(item)
+                            }
+                    }
                 }
             }
         }
@@ -43,6 +49,7 @@ struct MixListComponent: View {
     MixListComponent(
         title: "Öne Çıkanlar",
         actionTitle: "Tümünü Gör",
-        items: MixModel.previewMixes
+        items: MixModel.previewMixes,
+        onSelect: { _ in }
     )
 }

@@ -65,6 +65,9 @@ extension NavigationManager {
             
         case .home:
             HomeView()
+        
+        case .mixDetails(let mixID):
+            MixDetailsView(mixID: mixID)
         }
     }
 }

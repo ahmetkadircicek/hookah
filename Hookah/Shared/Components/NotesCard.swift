@@ -11,7 +11,7 @@ struct NotesCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: .paddingSmall) {
             Text("Notlar")
-                .font(.headerLarge)
+                .font(.headerSmall)
                 .foregroundColor(.pureWhite)
                 .padding(.vertical, .paddingSmall)
             

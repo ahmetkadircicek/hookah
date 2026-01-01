@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct FlavorsView: View {
-    let flavors: [FlavorModel]
+    @EnvironmentObject var appDataStore: AppDataStore
+    
+    private var flavors: [FlavorModel] {
+        appDataStore.flavors
+    }
     
     var body: some View {
         ZStack {
@@ -45,5 +49,10 @@ struct FlavorsView: View {
 }
 
 #Preview {
-    FlavorsView(flavors: [.citrusMix, .citrusPunch, .peachIceTea, .sweetPeach])
+    FlavorsView()
+        .environmentObject({
+            let store = AppDataStore.shared
+            store.flavors = [.citrusMix, .peachIceTea]
+            return store
+        }())
 }
