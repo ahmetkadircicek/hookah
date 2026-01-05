@@ -49,6 +49,7 @@ struct MixDetailsView: View {
                         
                         // MARK: BACK BUTTON
                         BackButton()
+                            .padding(.horizontal, .paddingLarge)
                         
                         // MARK: - Mix Card
                         MixDetailsCard(item: mix)

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MixListComponent: View {
+    @EnvironmentObject var nav: NavigationManager
     let title: String
     let actionTitle: String?
     let items: [MixModel]
@@ -27,6 +28,9 @@ struct MixListComponent: View {
                     Text(actionTitle)
                         .font(.bodySmall)
                         .foregroundStyle(.goldenOlive)
+                        .onTapGesture {
+                            nav.push(.mixes(filter: nil))
+                        }
                 }
             }
             .frame(height: headerHeight)

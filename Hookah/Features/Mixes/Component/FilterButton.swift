@@ -2,6 +2,8 @@ import SwiftUI
 
 struct FilterButton: View {
     let action: () -> Void
+    let isActive: Bool
+    
     let iconName: String = "line.3.horizontal.decrease"
     let title: String = "Filtreler"
     let spacing: CGFloat = 16
@@ -15,11 +17,11 @@ struct FilterButton: View {
         Button(action: action) {
             HStack(spacing: spacing) {
                 Image(systemName: iconName)
-                    .foregroundColor(.pureWhite)
+                    .foregroundColor(isActive ? .pureBlack : .pureWhite)
                     .frame(width: iconSize, height: iconSize)
                 Text(title)
                     .font(.bodyLarge)
-                    .foregroundColor(.pureWhite)
+                    .foregroundColor(isActive ? .pureBlack : .pureWhite)
             }
             .padding(.horizontal, horizontalPadding)
             .frame(minHeight: minHeight)
@@ -27,12 +29,16 @@ struct FilterButton: View {
         .buttonStyle(.plain)
         .background(
             RoundedRectangle(cornerRadius: cornerRadius)
-                .fill(.caviar)
-                .stroke(.darkGullGray, lineWidth: borderLineWidth)
+                .fill(isActive ? .goldenOlive : .caviar)
+                .stroke(
+                    isActive ? .goldenOlive : .darkGullGray,
+                    lineWidth: borderLineWidth
+                )
         )
+        .animation(.easeInOut(duration: 0.2), value: isActive)
     }
 }
 
 #Preview (traits: .sizeThatFitsLayout){
-    FilterButton(action: {})
+    FilterButton(action: {}, isActive: true)
 }

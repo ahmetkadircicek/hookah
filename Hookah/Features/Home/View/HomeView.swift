@@ -40,12 +40,11 @@ struct HomeView: View {
 
                     CategoryListComponent(
                         title: categoryTitle,
-                        items: [
-                            CategoryModel(imageName: "placeholder", title: "Klasik"),
-                            CategoryModel(imageName: "placeholder", title: "Meyve"),
-                            CategoryModel(imageName: "placeholder", title: "Pastane"),
-                            CategoryModel(imageName: "placeholder", title: "Special")
-                        ]
+                        items: HomeCategory.allCases.map { CategoryModel(category: $0)
+                        } ,
+                        onSelect: { categoryModel in
+                            nav.push(categoryModel.category.destination)
+                        }
                     )
                     
                     MixListComponent(

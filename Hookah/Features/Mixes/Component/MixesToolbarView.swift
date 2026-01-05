@@ -2,13 +2,14 @@ import SwiftUI
 
 struct MixesToolbarView: View {
     let onFilterTapped: () -> Void
+    let isFilterActivate: Bool
     let toolbarHeight: CGFloat = 50
 
     var body: some View {
         HStack {
             BackButton()
             Spacer()
-            FilterButton(action: onFilterTapped)
+            FilterButton(action: onFilterTapped, isActive: isFilterActivate)
         }
         .frame(height: toolbarHeight)
     }
@@ -17,7 +18,7 @@ struct MixesToolbarView: View {
 #Preview(traits: .sizeThatFitsLayout) {
     ZStack {
         Color.pureBlack.ignoresSafeArea()
-        MixesToolbarView(onFilterTapped: {})
-            .padding(.paddingExtraLarge)
+        MixesToolbarView(onFilterTapped: {}, isFilterActivate: true)
+            
     }
 }

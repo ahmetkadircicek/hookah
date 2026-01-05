@@ -10,6 +10,7 @@ import SwiftUI
 struct CategoryListComponent: View {
     let title: String
     let items: [CategoryModel]
+    let onSelect: (CategoryModel) -> Void
     let listHeight: CGFloat = 100
 
     var body: some View {
@@ -25,9 +26,13 @@ struct CategoryListComponent: View {
                         .frame(width: .paddingMedium)
                     ForEach(items) { item in
                         CategoryItemComponent(
-                            imageName: item.imageName,
-                            title: item.title
+                            imageName: item.category.imageName,
+                            title: item.category.title
                         )
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            onSelect(item)
+                        }
                     }
                     Spacer()
                         .frame(width: .paddingMedium)
@@ -41,9 +46,9 @@ struct CategoryListComponent: View {
 #Preview {
     CategoryListComponent(
         title: "Kategoriler",
-        items: [
-            CategoryModel(imageName: "placeholder", title: "Klasik"),
-            CategoryModel(imageName: "placeholder", title: "Meyve")
-        ]
+        items: HomeCategory.allCases.map { CategoryModel(category: $0) },
+        onSelect: { item in
+            print(item.category.title)
+        }
     )
 }

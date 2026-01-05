@@ -21,7 +21,7 @@ final class AppDataStore: ObservableObject {
     @Published var errorMessage: String?
 
     private let firestore = FirestoreService.shared
-
+    
     // ✅ PUBLIC ENTRY POINT
     func loadCafeData(cafeID: String) {
         print("🚀 loadCafeData START – cafeID:", cafeID)
@@ -77,5 +77,16 @@ final class AppDataStore: ObservableObject {
 
         print("📦 Raw flavors decoded:", result)
         flavors = result
+    }
+}
+extension AppDataStore {
+
+    static var preview: AppDataStore {
+        let store = AppDataStore.shared
+        store.mixes = MixModel.previewMixes
+        store.flavors = FlavorModel.previewFlavors
+        store.isLoading = false
+        store.errorMessage = nil
+        return store
     }
 }

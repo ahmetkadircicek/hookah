@@ -68,6 +68,13 @@ extension NavigationManager {
         
         case .mixDetails(let mixID):
             MixDetailsView(mixID: mixID)
-        }
+        
+        case .mixes:
+            MixesView()
+            
+        case .flavors:
+            FlavorsView()
+            
+        } //: Switch
     }
 }

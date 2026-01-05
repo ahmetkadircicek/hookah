@@ -1,15 +1,32 @@
 import SwiftUI
 import Combine
 
+@MainActor
 final class MixesViewModel: ObservableObject {
+    
+    //: MARK: - Dependencies
+    @Published var items: [MixModel] = []
+    
     let title: String = "Tüm Mixler"
-    let items: [MixModel]
-
+    
+    //: MARK: - Filter State
     @Published var isFilterPanelVisible: Bool = false
     @Published var selectedTobaccoType: String?
     @Published var selectedCategory: String?
     @Published var selectedIntensity: Int?
-
+    
+    private let appDataStore: AppDataStore
+    
+    // MARK: - Init
+    init(appDataStore: AppDataStore) {
+        self.appDataStore = appDataStore
+        
+        appDataStore.$mixes
+            .receive(on: RunLoop.main)
+            .assign(to: &$items)
+    }
+    
+    // MARK: - Computed
     var filteredItems: [MixModel] {
         items.filter { item in
             if let selectedTobaccoType,
@@ -39,10 +56,6 @@ final class MixesViewModel: ObservableObject {
 
     var actionTitle: String {
         "\(filteredItems.count) sonuç"
-    }
-
-    init(items: [MixModel]) {
-        self.items = items
     }
 
     func toggleFilterPanel() {

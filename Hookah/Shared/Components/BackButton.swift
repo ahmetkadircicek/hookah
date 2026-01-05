@@ -8,17 +8,22 @@
 import SwiftUI
 
 struct BackButton: View {
+    @EnvironmentObject var nav: NavigationManager
+    
     var body: some View {
         HStack () {
           Image(systemName: "arrow.left")
-                .padding(.horizontal, .paddingSmall)
+                .font(.system(size: .paddingLarge))
           Text("Geri")
                 .font(.system(size: .paddingLarge))
         } //: HSTACK
-        .padding(.horizontal, .paddingSmall)
+        .padding(.vertical, 6)
         .background(.pureBlack)
         .foregroundColor(.pureWhite)
         .contentShape(Rectangle())
+        .onTapGesture {
+            nav.pop()
+        }
     }
 }
 

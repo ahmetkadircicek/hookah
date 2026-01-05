@@ -8,22 +8,32 @@
 import SwiftUI
 
 struct MixesView: View {
-    @ObservedObject var viewModel: MixesViewModel
+    @EnvironmentObject var appDataStore: AppDataStore
+    @StateObject var viewModel: MixesViewModel
     
+    init() {
+        _viewModel = StateObject(wrappedValue: MixesViewModel(appDataStore: AppDataStore.shared
+            )
+        )
+    }
+ 
     var body: some View {
         ZStack(alignment: .top) {
             Color.pureBlack
                 .ignoresSafeArea()
             
             ScrollView {
-                VStack(alignment: .leading, spacing: .paddingExtraLarge) {
+                VStack(alignment: .leading, spacing: .paddingLarge) {
                     MixesHeaderSectionView()
                     MixesToolbarView(
                         onFilterTapped: {
                             withAnimation(.easeInOut) {
                                 viewModel.toggleFilterPanel()
+                            
                             }
-                        }
+                        },
+                        isFilterActivate: viewModel.isFilterPanelVisible
+                        
                     )
 
                     if viewModel.isFilterPanelVisible {
@@ -33,6 +43,9 @@ struct MixesView: View {
                             selectedCategory: $viewModel.selectedCategory,
                             selectedIntensity: $viewModel.selectedIntensity
                         )
+                        .padding(.paddingLarge)
+                        .transition(.move(edge: .top).combined(with: .opacity))
+
                     }
 
                     MixesTitleRowView(title: viewModel.title, actionTitle: viewModel.actionTitle)
@@ -45,5 +58,6 @@ struct MixesView: View {
 }
 
 #Preview {
-    MixesView(viewModel: MixesViewModel(items: MixModel.previewMixes))
+    MixesView()
+        .environmentObject(AppDataStore.preview)
 }
