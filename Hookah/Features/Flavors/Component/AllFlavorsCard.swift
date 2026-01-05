@@ -4,51 +4,62 @@
 //
 //  Created by Oğuzhan Cnr on 18.12.2025.
 //
-
 import SwiftUI
 
 struct AllFlavorsCard: View {
     let flavor: FlavorModel
     let lineWidth: CGFloat = 1
-    
+
+    @State private var isExpanded: Bool = false
+
     var body: some View {
         VStack(alignment: .leading, spacing: .paddingSmall) {
-            
-            HStack (alignment: .center, spacing: .paddingMedium){
-                // MARK: - Flavor Name
+
+            // MARK: - Header
+            HStack(alignment: .center, spacing: .paddingMedium) {
                 Text(flavor.name)
                     .font(.headerLarge)
                     .fontWeight(.bold)
                     .foregroundStyle(.pureWhite)
-                
+
                 Spacer()
-                
-                // MARK: - Tobacco Type
+
                 TobaccoTypeTag(text: flavor.tobaccoType)
-            } //: HSTACK
-            
+            }
+
             // MARK: - Flavor Brand
             Text(flavor.brand)
-                .font(.bodyLarge)
+                .font(.headerSmall)
                 .fontWeight(.bold)
                 .foregroundStyle(.aluminum)
-            
-            //: MARK: - Flavor Description
+
+            DividerLine()
+
+            // MARK: - Description
             Text(flavor.description)
                 .font(.bodyLarge)
-                .fontWeight(.bold)
                 .foregroundStyle(.aluminum)
-            
-        } //: VSTACK
+
+            // MARK: - Flavor Notes
+            if isExpanded, !flavor.flavorNotes.isEmpty {
+                FlavorNotesSection(notes: flavor.flavorNotes)
+                    .transition(.move(edge: .leading).combined(with: .opacity))
+            }
+        }
         .padding(.paddingLarge)
         .background(
             RoundedRectangle(cornerRadius: .radiusMedium)
                 .fill(.caviar)
-                .stroke(.darkGullGray, lineWidth: 1)
+                .stroke(.darkGullGray, lineWidth: lineWidth)
         )
+        .contentShape(Rectangle())
+        .onTapGesture {
+            withAnimation(.easeInOut) {
+                isExpanded.toggle()
+            }
+        }
     }
 }
-
 #Preview (traits: .sizeThatFitsLayout){
     AllFlavorsCard(flavor: .sweetPeach)
 }

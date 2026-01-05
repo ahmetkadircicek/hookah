@@ -32,6 +32,7 @@ struct FlavorsView: View {
                     
                     // MARK: - Back Button
                     BackButton()
+                        .padding(.horizontal, .paddingExtraLarge)
                     
                     // MARK: - Flavor Results
                     FlavorResults(results: flavors.count)

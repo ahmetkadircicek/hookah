@@ -138,5 +138,48 @@ extension FlavorModel {
         price: 190,
         imagePath: "https://image.com/citruspunch.png"
     )
-}
+    
+    static let previewFlavors: [FlavorModel] = [
+            FlavorModel(
+                id: "citrus_mix",
+                name: "Citrus Mix",
+                brand: "Adalya",
+                category: "Meyve",
+                description: "Narenciye aromalarının dengeli karışımı.",
+                flavorNotes: ["Limon", "Portakal", "Greyfurt"],
+                tobaccoType: "Blonde",
+                intensity: 5,
+                amount: 100,
+                price: 250,
+                imagePath: "citrus_mix"
+            ),
+            FlavorModel(
+                id: "sweet_peach",
+                name: "Sweet Peach",
+                brand: "Adalya",
+                category: "Meyve",
+                description: "Tatlı ve yumuşak şeftali aroması.",
+                flavorNotes: ["Şeftali", "Tatlı"],
+                tobaccoType: "Blonde",
+                intensity: 4,
+                amount: 100,
+                price: 240,
+                imagePath: "sweet_peach"
+            ),
+            FlavorModel(
+                id: "tropical_mango",
+                name: "Tropical Mango",
+                brand: "Adalya",
+                category: "Meyve",
+                description: "Yoğun tropikal mango aroması.",
+                flavorNotes: ["Mango", "Tropikal"],
+                tobaccoType: "Blonde",
+                intensity: 6,
+                amount: 100,
+                price: 260,
+                imagePath: "tropical_mango"
+            )
+        ]
+    }
+
 
