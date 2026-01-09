@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MixesView: View {
     @EnvironmentObject var appDataStore: AppDataStore
+    @EnvironmentObject var nav: NavigationManager
     @StateObject var viewModel: MixesViewModel
     
     init() {
@@ -49,7 +50,12 @@ struct MixesView: View {
                     }
 
                     MixesTitleRowView(title: viewModel.title, actionTitle: viewModel.actionTitle)
-                    MixesListView(items: viewModel.filteredItems)
+                    MixesListView(
+                    items: viewModel.filteredItems,
+                    onSelect: { mix in
+                        nav.push(.mixDetails(mixID: mix.id))
+                    }
+                    )
                 }
                 .padding(.paddingExtraLarge)
             }
