@@ -29,7 +29,7 @@ struct MixListComponent: View {
                         .font(.bodySmall)
                         .foregroundStyle(.goldenOlive)
                         .onTapGesture {
-                            nav.push(.mixes(filter: nil))
+                            nav.push(.mixes)
                         }
                 }
             }

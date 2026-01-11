@@ -12,19 +12,14 @@ struct HookahApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
-    @StateObject var nav = NavigationManager()
     @StateObject var appDataStore = AppDataStore.shared
+    @StateObject var appState = AppState()
     
     var body: some Scene {
         WindowGroup {
-            NavigationStack(path: $nav.path) {
-                nav.build(nav.current)
-                    .navigationDestination(for: Route.self) { route in
-                        nav.build(route)
-                    }
-            }
-            .environmentObject(nav)
-            .environmentObject(appDataStore)
+            AppRootView()
+                .environmentObject(appState)
+                .environmentObject(appDataStore)
         }
     }
 }

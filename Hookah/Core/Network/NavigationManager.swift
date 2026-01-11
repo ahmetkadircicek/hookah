@@ -64,13 +64,6 @@ extension NavigationManager {
                 SplashView()
             case .home:
                 HomeView()
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        SectionHeader(
-                            title: "Placeholder", subtitle: "Öne Çıkanlar ve Kategoriler"
-                        )
-                    }
-                }
             case .mixDetails(let mixID):
                 MixDetailsView(mixID: mixID)
             case .mixes:

@@ -10,7 +10,7 @@ import SwiftUI
 struct SplashView: View {
     
     @EnvironmentObject var store: AppDataStore
-    @EnvironmentObject var nav: NavigationManager
+    @EnvironmentObject var appState: AppState
 
     var body: some View {
         ZStack {
@@ -22,7 +22,7 @@ struct SplashView: View {
         }
         .onChange(of: store.isDataReady) {
             if store.isDataReady {
-                nav.setRoot(.home)
+                appState.phase = .main
             }
         }
     }
