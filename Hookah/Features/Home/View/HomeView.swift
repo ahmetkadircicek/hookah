@@ -9,13 +9,10 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var searchText: String = ""
-
+    
     @EnvironmentObject var appDataStore: AppDataStore
     @EnvironmentObject var nav: NavigationManager
-
-    let headerTitle: String = "PLACEHOLDER"
-    let headerSubtitle: String = "Öne Çıkanlar ve Kategoriler"
-    let categoryTitle: String = "Kategoriler"
+    
     let mixListTitle: String = "Öne Çıkanlar"
     let mixListAction: String = "Tümünü Gör"
 
@@ -23,21 +20,19 @@ struct HomeView: View {
         ZStack {
             Color.pureBlack
                 .ignoresSafeArea()
-
+                
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading, spacing: .paddingExtraLarge) {
                     SearchBarComponent(text: $searchText)
                         .padding(.horizontal, .paddingExtraLarge)
 
-                    CategoryListComponent(
-                        title: categoryTitle,
-                        items: HomeCategory.allCases.map { CategoryModel(category: $0)
-                        } ,
-                        onSelect: { categoryModel in
-                            nav.push(categoryModel.category.destination)
+                    FeaturedSlider(
+                        items: appDataStore.mixes,
+                        onSelect: { mix in
+                            nav.push(.mixDetails(mixID: mix.id))
                         }
                     )
-                    
+
                     MixListComponent(
                         title: mixListTitle,
                         actionTitle: mixListAction,
@@ -56,6 +51,6 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
-        .environmentObject(AppDataStore.shared)
+        .environmentObject(AppDataStore.preview)
         .environmentObject(NavigationManager())
 }
