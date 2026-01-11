@@ -9,42 +9,36 @@ import SwiftUI
 
 struct FlavorsView: View {
     @EnvironmentObject var appDataStore: AppDataStore
-    
+
     private var flavors: [FlavorModel] {
         appDataStore.flavors
     }
-    
+
     var body: some View {
         ZStack {
             Color.pureBlack
                 .ignoresSafeArea()
-            
+
             ScrollView (.vertical, showsIndicators: false) {
-                
+
                 VStack (alignment: .leading, spacing: .paddingExtraLarge){
-                    // MARK: - Header
-                    SectionHeader(title: "PLACEHOLDER", subtitle: "Flavor Listesi")
-                        .padding(.horizontal, .paddingExtraLarge)
-                    
-                    // MARK: - Divider
-                    DividerLine()
-                        .padding(.horizontal, .paddingExtraLarge)
-                    
-                    // MARK: - Back Button
-                    BackButton()
-                        .padding(.horizontal, .paddingExtraLarge)
-                    
                     // MARK: - Flavor Results
                     FlavorResults(results: flavors.count)
                         .padding(.horizontal, .paddingExtraLarge)
-                    
+
                     // MARK: - Flavor Card
                     ForEach(flavors) { flavor in
                         AllFlavorsCard(flavor: flavor)
                         .padding(.horizontal, .paddingLarge)
                         } //: FOREACH
                 } //: VSTACK
+                .padding(.vertical, .paddingExtraLarge)
             } //: SCROLLVIEW
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    SectionHeader(title: "Aromalar", subtitle: "Flavor Listesi")
+                }
+            }
         } //: ZSTACK
     }
 }

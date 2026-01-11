@@ -12,7 +12,7 @@ struct SectionHeader: View {
     let subtitle: String
 
     var body: some View {
-        VStack(alignment: .leading, spacing: .paddingSmall) {
+        VStack(alignment: .center) {
             Text(title)
                 .font(.headerLarge)
                 .foregroundStyle(.pureWhite)

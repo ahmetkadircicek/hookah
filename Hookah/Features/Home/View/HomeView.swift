@@ -9,10 +9,10 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var searchText: String = ""
-    
+
     @EnvironmentObject var appDataStore: AppDataStore
     @EnvironmentObject var nav: NavigationManager
-    
+
     let headerTitle: String = "PLACEHOLDER"
     let headerSubtitle: String = "Öne Çıkanlar ve Kategoriler"
     let categoryTitle: String = "Kategoriler"
@@ -26,15 +26,6 @@ struct HomeView: View {
 
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading, spacing: .paddingExtraLarge) {
-                    SectionHeader(
-                        title: headerTitle,
-                        subtitle: headerSubtitle
-                    )
-                    .padding(.horizontal, .paddingExtraLarge)
-
-                    DividerLine()
-                        .padding(.horizontal, .paddingExtraLarge)
-
                     SearchBarComponent(text: $searchText)
                         .padding(.horizontal, .paddingExtraLarge)
 
@@ -57,6 +48,7 @@ struct HomeView: View {
                     )
                     .padding(.horizontal, .paddingExtraLarge)
                 }
+                .padding(.vertical, .paddingExtraLarge)
             }
         }
     }

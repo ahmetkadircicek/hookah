@@ -22,19 +22,18 @@ struct MixesView: View {
         ZStack(alignment: .top) {
             Color.pureBlack
                 .ignoresSafeArea()
-            
+
             ScrollView {
                 VStack(alignment: .leading, spacing: .paddingLarge) {
-                    MixesHeaderSectionView()
                     MixesToolbarView(
                         onFilterTapped: {
                             withAnimation(.easeInOut) {
                                 viewModel.toggleFilterPanel()
-                            
+
                             }
                         },
                         isFilterActivate: viewModel.isFilterPanelVisible
-                        
+
                     )
 
                     if viewModel.isFilterPanelVisible {
@@ -44,7 +43,6 @@ struct MixesView: View {
                             selectedCategory: $viewModel.selectedCategory,
                             selectedIntensity: $viewModel.selectedIntensity
                         )
-                        .padding(.paddingLarge)
                         .transition(.move(edge: .top).combined(with: .opacity))
 
                     }
@@ -58,6 +56,11 @@ struct MixesView: View {
                     )
                 }
                 .padding(.paddingExtraLarge)
+            }
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    SectionHeader(title: "Karışımlar", subtitle: "Tüm Mixler")
+                }
             }
         }
     }

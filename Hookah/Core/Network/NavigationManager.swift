@@ -58,23 +58,28 @@ extension NavigationManager {
     
     @ViewBuilder
     func build(_ route: Route) -> some View {
+        Group {
         switch route {
-            
-        case .splash:
-            SplashView()
-            
-        case .home:
-            HomeView()
-        
-        case .mixDetails(let mixID):
-            MixDetailsView(mixID: mixID)
-        
-        case .mixes:
-            MixesView()
-            
-        case .flavors:
-            FlavorsView()
-            
-        } //: Switch
+            case .splash:
+                SplashView()
+            case .home:
+                HomeView()
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        SectionHeader(
+                            title: "Placeholder", subtitle: "Öne Çıkanlar ve Kategoriler"
+                        )
+                    }
+                }
+            case .mixDetails(let mixID):
+                MixDetailsView(mixID: mixID)
+            case .mixes:
+                MixesView()
+            case .flavors:
+                FlavorsView()
+            }
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbarColorScheme(.dark, for: .navigationBar)
     }
 }

@@ -13,14 +13,11 @@ struct MixCard: View {
     let lineLimit: Int = 2
     let favoriteText: String = "Öne Çıkan"
 
-    private var categoryTags: [String] {
-        item.mixType.isEmpty ? [] : [item.mixType]
-    }
-
     var body: some View {
-        HStack(alignment: .top, spacing: .paddingLarge) {
-            VStack(alignment: .leading, spacing: .paddingLarge) {
-                VStack(alignment: .leading, spacing: .paddingSmall) {
+        ZStack(alignment: .topTrailing) {
+            HStack(alignment: .top, spacing: .paddingMedium) {
+                VStack(alignment: .leading, spacing: .paddingMedium) {
+                    // MARK: - Title & Description
                     Text(item.name)
                         .font(.headerSmall)
                         .foregroundStyle(.pureWhite)
@@ -30,47 +27,51 @@ struct MixCard: View {
                         .foregroundStyle(.aluminum)
                         .lineLimit(lineLimit)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                }
 
-                VStack(alignment: .leading, spacing: .paddingSmall) {
+                    // MARK: - Tags
                     HStack(spacing: .paddingSmall) {
-                        ForEach(categoryTags, id: \.self) { tag in
-                            CategoryTag(text: tag)
+                        if !item.mixType.isEmpty {
+                            CategoryTag(text: item.mixType)
+                        }
+
+                        if !item.mixTobaccoType.isEmpty {
+                            TobaccoTypeTag(text: item.mixTobaccoType)
                         }
                     }
 
-                    if !item.mixTobaccoType.isEmpty {
-                        TobaccoTypeTag(text: item.mixTobaccoType)
+                    // MARK: - Intensity
+                    VStack(alignment: .leading, spacing: .paddingSmall) {
+                        Text("Yoğunluk")
+                            .font(.captionLarge)
+                            .foregroundStyle(.aluminum)
+
+                        IntensityIndicator(intensity: item.intensity)
                     }
                 }
+
+                Spacer(minLength: 0)
             }
+            .padding(.paddingLarge)
+            .background(
+                RoundedRectangle(cornerRadius: .radiusMedium)
+                    .fill(.caviar)
+                    .stroke(.darkGullGray, lineWidth: lineWidth)
+            )
 
-            Spacer(minLength: .paddingSmall)
-
-            VStack(alignment: .trailing, spacing: .paddingLarge) {
-                if item.isFavorite {
-                    Text(favoriteText.capitalizedFirst)
-                        .font(.captionLarge)
-                        .foregroundStyle(.pureBlack)
-                        .padding(.horizontal, .paddingLarge)
-                        .padding(.vertical, .paddingSmall)
-                        .background(
-                            Capsule()
-                                .fill(.goldenOlive)
-                        )
-                }
-
-                Spacer()
-
-                IntensityIndicator(intensity: item.intensity)
+            // MARK: - Favorite Badge
+            if item.isFavorite {
+                Text(favoriteText.capitalizedFirst)
+                    .font(.captionLarge)
+                    .foregroundStyle(.pureBlack)
+                    .padding(.horizontal, .paddingMedium)
+                    .padding(.vertical, .paddingSmall)
+                    .background(
+                        Capsule()
+                            .fill(.goldenOlive)
+                    )
+                    .padding([.top, .trailing], .paddingLarge)
             }
         }
-        .padding(.paddingExtraLarge)
-        .background(
-            RoundedRectangle(cornerRadius: .radiusMedium)
-                .fill(.caviar)
-                .stroke(.darkGullGray, lineWidth: lineWidth)
-        )
     }
 }
 

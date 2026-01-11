@@ -10,11 +10,11 @@ import SwiftUI
 struct MixDetailsView: View {
     
     // PROPERTIES
-    
+
     let mixID: String
-    
+
     @EnvironmentObject var appDataStore: AppDataStore
-    
+
     let headerTitle: String = "PLACEHOLDER"
     let headerSubtitle: String = "Karışım Detayları"
     
@@ -33,40 +33,34 @@ struct MixDetailsView: View {
         ZStack {
             Color.pureBlack
                 .ignoresSafeArea()
-            
+
             if let mix {
                 ScrollView (.vertical, showsIndicators: false){
-                    
+
                     VStack(alignment: .leading, spacing: .paddingExtraLarge) {
-                        
-                        // MARK: - Header
-                        SectionHeader(title: mix.name , subtitle: headerSubtitle)
-                            .padding(.horizontal, .paddingExtraLarge)
-                        
-                        // MARK: - Divider
-                        DividerLine()
-                            .padding(.horizontal, .paddingExtraLarge)
-                        
-                        // MARK: BACK BUTTON
-                        BackButton()
-                            .padding(.horizontal, .paddingLarge)
-                        
+
                         // MARK: - Mix Card
                         MixDetailsCard(item: mix)
                             .padding(.horizontal, .paddingMedium)
-                        
+
                         // MARK: - Pie Chart Card
                         PieChartCard(
                             item: mix,
                             allFlavors: relatedFlavors
                         )
                         .padding(.horizontal, .paddingMedium)
-                        
+
                         // MARK: - Notes
                         NotesCard()
                             .padding(.horizontal, .paddingMedium)
                     } //: VSTACK
+                    .padding(.vertical, .paddingExtraLarge)
                 } //: SCROLLVIEW
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        SectionHeader(title: mix.name, subtitle: headerSubtitle)
+                    }
+                }
             } else {
                 ProgressView()
             }

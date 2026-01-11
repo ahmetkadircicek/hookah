@@ -7,7 +7,6 @@ struct MixesToolbarView: View {
 
     var body: some View {
         HStack {
-            BackButton()
             Spacer()
             FilterButton(action: onFilterTapped, isActive: isFilterActivate)
         }
