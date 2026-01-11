@@ -43,7 +43,9 @@ struct AllFlavorsCard: View {
             // MARK: - Flavor Notes
             if isExpanded, !flavor.flavorNotes.isEmpty {
                 FlavorNotesSection(notes: flavor.flavorNotes)
-                    .transition(.move(edge: .leading).combined(with: .opacity))
+                    .transition(
+                        .move(edge: .top)
+                        .combined(with: .opacity))
             }
         }
         .padding(.paddingLarge)
@@ -54,7 +56,7 @@ struct AllFlavorsCard: View {
         )
         .contentShape(Rectangle())
         .onTapGesture {
-            withAnimation(.easeInOut) {
+            withAnimation(.easeInOut(duration: 0.25)) {
                 isExpanded.toggle()
             }
         }
