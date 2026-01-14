@@ -72,7 +72,5 @@ extension NavigationManager {
                 FlavorsView()
             }
         }
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbarColorScheme(.dark, for: .navigationBar)
     }
 }

@@ -14,9 +14,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
         
+        // MARK: - Firebase Configuration
+        
         FirebaseApp.configure()
         print("Firebase configured successfully")
-        
+    
         return true
     }
 }

@@ -14,8 +14,10 @@ final class AppDataStore: ObservableObject {
     static let shared = AppDataStore()
     private init() {}
 
+    @Published var cafeName: String = ""
     @Published var mixes: [MixModel] = []
     @Published var flavors: [FlavorModel] = []
+    
     @Published var isLoading: Bool = false
     @Published var isDataReady: Bool = false
     @Published var errorMessage: String?
@@ -32,6 +34,8 @@ final class AppDataStore: ObservableObject {
 
         Task {
             do {
+                try await fetchCafeName(cafeID: cafeID)
+                
                 print("📡 Fetching mixes...")
                 try await fetchMixes(cafeID: cafeID)
                 print("✅ Mixes fetched:", mixes.count)
@@ -53,6 +57,21 @@ final class AppDataStore: ObservableObject {
     }
 
     // 🔒 PRIVATE FETCH LOGIC
+    
+    private func fetchCafeName(cafeID: String) async throws {
+        let path = "cafes/\(cafeID)"
+        print("➡️ Firestore doc path:", path)
+
+        let cafe = try await firestore.getDocument(
+            at: path,
+            as: CafeModel.self
+        )
+
+        cafeName = cafe.name
+        print("☕️ Cafe name fetched:", cafe.name)
+    }
+    
+    
     private func fetchMixes(cafeID: String) async throws {
         let path = "cafes/\(cafeID)/mixes"
         print("➡️ Firestore path:", path)

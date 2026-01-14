@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainTabView: View {
     
+    @EnvironmentObject var nav: NavigationManager
     @State private var selectedTab: MainTab = .home
     
     var body: some View {

@@ -10,6 +10,7 @@ import SwiftUI
 struct AppRootView: View {
     
     @EnvironmentObject var appState: AppState
+    
     var body: some View {
         switch appState.phase {
         case .splash:
