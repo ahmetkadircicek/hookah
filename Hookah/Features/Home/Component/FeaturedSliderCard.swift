@@ -2,7 +2,7 @@
 //  FeaturedSliderCard.swift
 //  Hookah
 //
-//  Created by Claude on 11.01.2026.
+//  Created by Ahmet Kadir Çiçek on 11.01.2026.
 //
 
 import SwiftUI
