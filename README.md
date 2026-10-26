@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Hookah Platform Banner](docs/banner.svg)
+![Hookah](docs/cover.png)
 
 ### Artisanal flavor mixology, intensity metrics, tobacco profiling and lounge discovery built with Swift & SwiftUI.
 
